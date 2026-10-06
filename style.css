@@ -1,0 +1,16 @@
+*{box-sizing:border-box}body{margin:0;font-family:Arial;background:linear-gradient(135deg,#eaf6ff,#fff);color:#17324d}header{background:linear-gradient(135deg,#075aa5,#08a0d8);color:#fff;padding:22px 5%;display:flex;gap:18px;align-items:center;justify-content:space-between}.logo{width:65px;height:65px;border-radius:16px;background:#ffd21a;color:#075aa5;display:grid;place-items:center;font-weight:900;font-size:22px}h1{margin:0;font-size:28px}header strong{background:#fff;color:#075aa5;padding:12px 20px;border-radius:14px;text-align:center}main{max-width:1150px;margin:25px auto;padding:0 16px}section{background:#fff;margin-bottom:20px;border-radius:16px;overflow:hidden;box-shadow:0 5px 20px #075aa520;border:1px solid #d7e8f4}h2{margin:0;padding:13px 18px;background:linear-gradient(90deg,#0864ae,#08a0d8);color:#fff;font-size:17px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:20px}label{font-weight:bold;font-size:14px}label.full{grid-column:1/-1}input,select,textarea{display:block;width:100%;margin-top:6px;padding:11px;border:1px solid #b8d2e5;border-radius:8px;font:inherit}textarea{min-height:80px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 25px}.actions button,.actions a{border:0;border-radius:9px;padding:13px 20px;font-weight:bold;text-decoration:none;cursor:pointer;background:#087fca;color:#fff}.actions button:nth-child(2){background:#e8eef3;color:#17324d}.actions button:nth-child(3){background:#ffc928;color:#17324d}.actions a{background:#173f68}#status{margin-bottom:30px;padding:12px;border-radius:8px}@media(max-width:700px){.grid{grid-template-columns:1fr}label.full{grid-column:auto}.actions>*{width:100%;text-align:center}h1{font-size:20px}header strong{display:none}}@media print{.actions,#status{display:none!important}section{box-shadow:none}}
+/* LOGO SMK BINA NUSANTARA */
+header .logo{
+  width:86px;
+  height:86px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 86px;
+}
+header .logo img{
+  width:82px;
+  height:82px;
+  object-fit:contain;
+  display:block;
+}

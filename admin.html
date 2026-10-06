@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin SPMB 2027/2028 - SMK Bina Nusantara</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#eef6ff;color:#16395f}
+header{background:linear-gradient(100deg,#063d78,#0b86c9);color:#fff;padding:24px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+header h1{margin:0;font-size:26px}header p{margin:4px 0 0;color:#dff1ff}
+.container{width:min(1400px,94%);margin:25px auto}
+.toolbar{background:#fff;border-radius:14px;padding:18px;box-shadow:0 7px 25px #164b7715;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input{padding:12px 14px;border:1px solid #bdd0e5;border-radius:9px;min-width:280px;outline:none}
+button,.btn{border:0;border-radius:9px;padding:12px 18px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block}
+.primary{background:#0b83c8;color:#fff}.yellow{background:#ffc928;color:#15395d}.dark{background:#164978;color:#fff}.gray{background:#e8eff6;color:#173d63}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+.card{background:#fff;border-radius:14px;padding:20px;box-shadow:0 7px 25px #164b7715}.card b{font-size:28px;color:#0877bb}.card span{display:block;color:#72839a;font-size:12px}
+.table-wrap{background:#fff;border-radius:14px;overflow:auto;box-shadow:0 7px 25px #164b7715}
+table{width:100%;border-collapse:collapse;min-width:1100px}th{background:#075b9d;color:#fff;text-align:left;padding:13px;font-size:12px;position:sticky;top:0}td{padding:11px 13px;border-bottom:1px solid #e5edf5;font-size:12px}tr:hover td{background:#f5faff}
+.badge{background:#fff1b8;padding:4px 8px;border-radius:20px;font-weight:800}
+.empty{text-align:center;padding:45px;color:#73849a}
+.modal{display:none;position:fixed;inset:0;background:#001b35aa;align-items:center;justify-content:center;padding:20px;z-index:5}.modal.show{display:flex}
+.box{background:#fff;border-radius:16px;width:min(850px,100%);max-height:88vh;overflow:auto;padding:25px;position:relative}.close{position:absolute;right:15px;top:10px;background:none;font-size:28px}.detail{display:grid;grid-template-columns:1fr 1fr;gap:8px}.detail div{padding:10px;background:#f4f8fc;border-radius:7px}.detail strong{display:block;font-size:10px;color:#6e8095;text-transform:uppercase}.detail span{font-weight:700}
+@media(max-width:650px){.summary{grid-template-columns:1fr}.detail{grid-template-columns:1fr}header{display:block}input{min-width:100%;width:100%}}
+@media print{header,.toolbar,.summary .card:not(:first-child),button,.btn{display:none!important}.container{width:100%;margin:0}.table-wrap{box-shadow:none}body{background:#fff}}
+</style>
+</head>
+<body>
+<header>
+ <div><h1>ADMIN SPMB 2027/2028</h1><p>SMK Bina Nusantara Kebumen • Data Pendaftar</p></div>
+ <a class="btn yellow" href="http://localhost:3001">← Form SPMB</a>
+</header>
+<div class="container">
+ <div class="toolbar">
+  <input id="cari" placeholder="🔎 Cari nama, nomor pendaftaran, NISN...">
+  <button class="primary" id="refresh">↻ Refresh Data</button>
+  <button class="yellow" id="excel">⬇ Export Excel</button>
+  <button class="dark" onclick="window.print()">🖨 Cetak</button>
+ </div>
+ <div class="summary">
+  <div class="card"><b id="jumlah">0</b><span>Total Pendaftar</span></div>
+  <div class="card"><b id="akl">0</b><span>Memilih AKL</span></div>
+  <div class="card"><b id="lain">0</b><span>Jurusan Lain</span></div>
+ </div>
+ <div class="table-wrap">
+  <table>
+   <thead><tr><th>No</th><th>No. Pendaftaran</th><th>Nama</th><th>NISN</th><th>Jenis Kelamin</th><th>Asal Sekolah</th><th>Pilihan 1</th><th>Pilihan 2</th><th>Tanggal Daftar</th><th>Aksi</th></tr></thead>
+   <tbody id="tbody"></tbody>
+  </table>
+ </div>
+</div>
+<div class="modal" id="modal"><div class="box"><button class="close" id="close">×</button><h2>Detail Pendaftar</h2><div class="detail" id="detail"></div></div></div>
+<script>
+let data=[],filtered=[];
+const $=id=>document.getElementById(id);
+async function load(){
+ try{const r=await fetch("/api/pendaftar");data=await r.json();render(data)}
+ catch(e){$("tbody").innerHTML='<tr><td colspan="10" class="empty">Server SPMB belum aktif. Jalankan Mulai_SPMB.bat.</td></tr>'}
+}
+function render(rows){
+ filtered=rows;
+ $("jumlah").textContent=rows.length;
+ $("akl").textContent=rows.filter(x=>(x.jurusan1||"").toLowerCase().includes("akuntansi")).length;
+ $("lain").textContent=Math.max(0,rows.length-Number($("akl").textContent));
+ if(!rows.length){$("tbody").innerHTML='<tr><td colspan="10" class="empty">Belum ada data pendaftar.</td></tr>';return}
+ $("tbody").innerHTML=rows.map((x,i)=>`<tr>
+ <td>${i+1}</td><td><span class="badge">${x.nomor||""}</span></td>
+ <td><b>${esc(x.nama)}</b></td><td>${esc(x.nisn)}</td><td>${esc(x.jenisKelamin)}</td>
+ <td>${esc(x.asalSekolah)}</td><td>${esc(x.jurusan1)}</td><td>${esc(x.jurusan2)}</td>
+ <td>${esc(x.tanggalDaftar)}</td><td><button class="primary" onclick="detail(${i})">Lihat</button></td></tr>`).join("");
+}
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function detail(i){
+ const x=filtered[i];const entries=Object.entries(x).filter(([k])=>k!=="disimpan");
+ $("detail").innerHTML=entries.map(([k,v])=>`<div><strong>${k.replace(/([A-Z])/g," $1")}</strong><span>${esc(v)}</span></div>`).join("");
+ $("modal").classList.add("show");
+}
+$("close").onclick=()=>$("modal").classList.remove("show");
+$("modal").onclick=e=>{if(e.target===$("modal"))$("modal").classList.remove("show")};
+$("refresh").onclick=load;
+$("cari").oninput=e=>{
+ const q=e.target.value.toLowerCase();
+ render(data.filter(x=>Object.values(x).some(v=>String(v??"").toLowerCase().includes(q))));
+};
+$("excel").onclick=()=>{
+ if(!filtered.length){alert("Tidak ada data untuk diekspor.");return}
+ const keys=[...new Set(filtered.flatMap(x=>Object.keys(x)))];
+ const csv=[keys.join(","),...filtered.map(x=>keys.map(k=>`"${String(x[k]??"").replace(/"/g,'""')}"`).join(","))].join("\\r\\n");
+ const blob=new Blob(["\\ufeff"+csv],{type:"text/csv;charset=utf-8"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="Data_SPMB_2027_2028.csv";a.click();URL.revokeObjectURL(a.href);
+};
+load();
+</script>
+</body>
+</html>
