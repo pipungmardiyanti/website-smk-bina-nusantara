@@ -1,0 +1,19 @@
+<!doctype html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SPMB 2027/2028 - SMK Bina Nusantara Kebumen</title><link rel="stylesheet" href="style.css"></head><body>
+<header><div class="logo"><img src="logo-binus.png" alt="Logo SMK Bina Nusantara Kebumen"></div><div><h1>FORM PENDAFTARAN SPMB</h1><b>SMK BINA NUSANTARA KEBUMEN</b><div>TAHUN AJARAN 2027/2028</div></div><strong>SPMB<br>2027/2028</strong></header>
+<main>
+<section><h2>A. IDENTITAS CALON SISWA</h2><div class="grid">
+<label>No. Pendaftaran<input id="noPendaftaran" readonly></label><label>Tanggal Daftar<input id="tanggalDaftar" type="date"></label>
+<label>NISN<input id="nisn"></label><label>NIK<input id="nik"></label><label class="full">Nama Lengkap<input id="nama"></label>
+<label>Tempat Lahir<input id="tempatLahir"></label><label>Tanggal Lahir<input id="tanggalLahir" type="date"></label>
+<label>Jenis Kelamin<select id="jenisKelamin"><option value="">-- Pilih --</option><option>Laki-laki</option><option>Perempuan</option></select></label>
+<label>Agama<select id="agama"><option value="">-- Pilih Agama --</option><option>Islam</option><option>Kristen</option><option>Katolik</option><option>Hindu</option><option>Buddha</option><option>Konghucu</option></select></label>
+<label>Berat Badan (kg)<input id="berat" type="number"></label><label>Tinggi Badan (cm)<input id="tinggi" type="number"></label>
+<label class="full">Alamat<input id="alamat"></label><label>No. HP / WhatsApp<input id="noHp"></label>
+</div></section>
+<section><h2>B. PILIHAN JURUSAN</h2><div class="grid"><label>Pilihan Jurusan 1<select id="jurusan1"><option value="">-- Pilih Jurusan --</option><option>Akuntansi dan Keuangan Lembaga</option><option>Teknik Otomotif dan Alat Berat</option><option>Desain Komunikasi Visual</option><option>Agribisnis Tanaman Pangan dan Hortikultura</option></select></label><label>Pilihan Jurusan 2<select id="jurusan2"><option value="">-- Pilih Jurusan --</option><option>Akuntansi dan Keuangan Lembaga</option><option>Teknik Otomotif dan Alat Berat</option><option>Desain Komunikasi Visual</option><option>Agribisnis Tanaman Pangan dan Hortikultura</option></select></label></div></section>
+<section><h2>C. DATA ORANG TUA / WALI</h2><div class="grid">
+<label>Nama Ayah<input id="namaAyah"></label><label>Pekerjaan Ayah<input id="pekerjaanAyah"></label><label>Nama Ibu<input id="namaIbu"></label><label>Pekerjaan Ibu<input id="pekerjaanIbu"></label><label>Nama Wali<input id="namaWali"></label><label>Hubungan Wali<input id="hubunganWali"></label><label class="full">Alamat Orang Tua / Wali<input id="alamatOrtu"></label><label>No. HP Orang Tua / Wali<input id="hpOrtu"></label><label>Asal Sekolah (SMP/MTs)<input id="asalSekolah"></label>
+</div></section>
+<section><h2>D. DATA TAMBAHAN</h2><div class="grid"><label>No. Kartu Keluarga<input id="noKK"></label><label>Anak Ke<input id="anakKe" type="number"></label><label>Jumlah Saudara<input id="jumlahSaudara" type="number"></label><label>Penerima KIP<select id="kip"><option>Tidak</option><option>Ya</option></select></label><label class="full">Keterangan<textarea id="keterangan"></textarea></label></div></section>
+<div class="actions"><button id="simpan">💾 SIMPAN DATA</button><button id="reset">↺ RESET</button><button id="cetak">🖨 CETAK</button><a href="../index.html">← KEMBALI KE WEBSITE SEKOLAH</a><a href="admin.html" style="background:#f5c400;color:#123;padding:12px 18px;border-radius:8px;font-weight:800;text-decoration:none">👨‍💼 ADMIN SPMB</a></div><div id="status"></div>
+</main><script src="script.js"></script></body></html>
