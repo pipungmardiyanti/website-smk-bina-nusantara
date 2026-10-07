@@ -1,16 +1,214 @@
-*{box-sizing:border-box}body{margin:0;font-family:Arial;background:linear-gradient(135deg,#eaf6ff,#fff);color:#17324d}header{background:linear-gradient(135deg,#075aa5,#08a0d8);color:#fff;padding:22px 5%;display:flex;gap:18px;align-items:center;justify-content:space-between}.logo{width:65px;height:65px;border-radius:16px;background:#ffd21a;color:#075aa5;display:grid;place-items:center;font-weight:900;font-size:22px}h1{margin:0;font-size:28px}header strong{background:#fff;color:#075aa5;padding:12px 20px;border-radius:14px;text-align:center}main{max-width:1150px;margin:25px auto;padding:0 16px}section{background:#fff;margin-bottom:20px;border-radius:16px;overflow:hidden;box-shadow:0 5px 20px #075aa520;border:1px solid #d7e8f4}h2{margin:0;padding:13px 18px;background:linear-gradient(90deg,#0864ae,#08a0d8);color:#fff;font-size:17px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:20px}label{font-weight:bold;font-size:14px}label.full{grid-column:1/-1}input,select,textarea{display:block;width:100%;margin-top:6px;padding:11px;border:1px solid #b8d2e5;border-radius:8px;font:inherit}textarea{min-height:80px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 25px}.actions button,.actions a{border:0;border-radius:9px;padding:13px 20px;font-weight:bold;text-decoration:none;cursor:pointer;background:#087fca;color:#fff}.actions button:nth-child(2){background:#e8eef3;color:#17324d}.actions button:nth-child(3){background:#ffc928;color:#17324d}.actions a{background:#173f68}#status{margin-bottom:30px;padding:12px;border-radius:8px}@media(max-width:700px){.grid{grid-template-columns:1fr}label.full{grid-column:auto}.actions>*{width:100%;text-align:center}h1{font-size:20px}header strong{display:none}}@media print{.actions,#status{display:none!important}section{box-shadow:none}}
-/* LOGO SMK BINA NUSANTARA */
-header .logo{
-  width:86px;
-  height:86px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex:0 0 86px;
+/* =========================================================
+   STYLE.CSS BARU - SMK BINA NUSANTARA KEBUMEN
+   Cocok dengan index.html versi terbaru
+   ========================================================= */
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;color:#263238;background:#fff;line-height:1.6}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button,input,textarea{font:inherit}
+.container{width:min(1180px,92%);margin:auto}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 15px rgba(0,0,0,.10)}
+.topbar{background:#073d73;color:#fff;font-size:13px}
+.topbar-inner{min-height:38px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;min-width:240px}
+.brand img{width:58px;height:58px;object-fit:contain}
+.brand span{display:flex;flex-direction:column}
+.brand strong{font-size:16px;color:#073d73;line-height:1.2}
+.brand small{font-size:12px;color:#777;letter-spacing:2px}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{padding:9px 11px;color:#253746;font-weight:700;font-size:14px;border-radius:8px}
+.nav-links a:hover{color:#075ca8;background:#edf7ff}
+.nav-cta{background:#f2b705!important;color:#073d73!important;padding:10px 17px!important}
+.menu-toggle{display:none;border:0;background:none;font-size:28px;cursor:pointer}
+
+/* HERO */
+.hero{position:relative;min-height:650px;background:#073d73;overflow:hidden}
+.hero-slides{position:relative;min-height:650px}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;display:flex;align-items:center;opacity:0;visibility:hidden;transition:opacity .5s ease}
+.hero-slide.active{opacity:1;visibility:visible}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,39,78,.86),rgba(3,39,78,.45),rgba(3,39,78,.18))}
+.hero-content{position:relative;z-index:2;color:#fff;padding:100px 0;max-width:1180px}
+.eyebrow{display:inline-block;color:#ffd43b;font-weight:800;letter-spacing:2px;font-size:14px;margin-bottom:18px}
+.hero h1{font-size:clamp(42px,6vw,76px);line-height:1.03;margin-bottom:22px;font-weight:900;max-width:900px}
+.hero h1 span{color:#ffd43b}
+.hero p{max-width:720px;font-size:18px;line-height:1.75;margin-bottom:28px}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 22px;border-radius:10px;font-weight:800;border:2px solid transparent;cursor:pointer}
+.btn-yellow{background:#f2b705;color:#073d73}
+.btn-yellow:hover{background:#ffd43b}
+.btn-outline{border-color:#fff;color:#fff;background:transparent}
+.btn-outline:hover{background:#fff;color:#073d73}
+.slider-controls{position:absolute;z-index:5;bottom:28px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px}
+.slider-controls button{width:42px;height:42px;border:0;border-radius:50%;background:rgba(255,255,255,.9);color:#073d73;font-size:28px;cursor:pointer}
+#dots{display:flex;gap:7px}
+#dots button{width:9px;height:9px;padding:0;background:#fff;opacity:.5;border:0;border-radius:50%}
+#dots button.active{opacity:1;background:#ffd43b}
+
+/* QUICK */
+.quick{background:#fff;box-shadow:0 8px 25px rgba(0,0,0,.08);position:relative;z-index:3}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.quick-grid>a{display:flex;align-items:center;gap:12px;padding:22px 18px;border-right:1px solid #e6eef5}
+.quick-grid>a:last-child{border-right:0}
+.quick-grid b{font-size:28px}
+.quick-grid span{font-weight:800;color:#073d73}
+.quick-grid small{display:block;color:#6b7b87;font-weight:400;font-size:12px;margin-top:2px}
+
+/* SECTION */
+.section{padding:85px 0}
+.section.soft{background:#f5faff}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:40px}
+.section-head>div{max-width:700px}
+.section-label{display:block;color:#e2ad00;font-size:13px;font-weight:900;letter-spacing:2px;margin-bottom:8px}
+.section-head h2,.section-text h2{font-size:clamp(30px,4vw,48px);line-height:1.15;color:#073d73}
+.section-head>p{max-width:450px;color:#61707c;font-size:16px}
+.section-head.light h2,.section-head.light>p{color:#fff}
+.section-head.light .section-label{color:#ffd43b}
+
+/* PROFIL */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:65px;align-items:center}
+.section-image img,.achievement-image img{width:100%;height:430px;object-fit:cover;border-radius:22px;box-shadow:0 15px 35px rgba(0,0,0,.13)}
+.section-text p{color:#5e6d78;margin-top:18px;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.stats>div{background:#f4faff;border:1px solid #dcecf7;border-radius:14px;padding:18px;text-align:center}
+.stats strong{display:block;color:#075ca8;font-size:28px}
+.stats span{display:block;color:#6c7a83;font-size:12px}
+
+/* JURUSAN */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.program-card{background:#fff;border-radius:18px;overflow:hidden;border:1px solid #dfeaf2;box-shadow:0 7px 24px rgba(0,60,120,.08);transition:.3s}
+.program-card:hover{transform:translateY(-6px);box-shadow:0 15px 35px rgba(0,60,120,.14)}
+.program-card>img{width:100%;height:210px;object-fit:cover}
+.program-card>div{padding:22px}
+.number{display:inline-flex;width:35px;height:35px;align-items:center;justify-content:center;border-radius:50%;background:#eaf6ff;color:#075ca8;font-weight:900;margin-bottom:10px}
+.program-card h3{color:#075ca8;font-size:20px;line-height:1.3;margin-bottom:10px}
+.program-card p{color:#66737d;font-size:14px;line-height:1.65;margin-bottom:16px}
+.program-card a{color:#0784c7;font-weight:800;font-size:14px}
+
+/* PROGRAM GRATIS */
+.benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.benefit{background:#fff;border:1px solid #dceefa;border-radius:18px;padding:28px;box-shadow:0 7px 22px rgba(0,60,120,.07);min-height:190px}
+.benefit b{font-size:36px;display:block;margin-bottom:10px}
+.benefit h3{color:#075ca8;font-size:20px;margin-bottom:7px}
+.benefit p{color:#687680;font-size:14px}
+.benefit.featured{background:#073d73;color:#fff;border-color:#073d73}
+.benefit.featured h3{color:#ffd43b}
+.benefit.featured p{color:#fff}
+.disclaimer{font-size:12px;color:#7a8790;margin-top:20px}
+
+/* KEGIATAN */
+.blue-section{background:linear-gradient(135deg,#073d73,#0b4f8f);color:#fff}
+.activity-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.activity{position:relative;overflow:hidden;border-radius:18px;min-height:300px;background:#123f6d;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.activity.featured{grid-column:span 2}
+.activity img{width:100%;height:330px;object-fit:cover;transition:transform .45s ease}
+.activity:hover img{transform:scale(1.06)}
+.activity-caption{position:absolute;left:0;right:0;bottom:0;padding:65px 22px 20px;background:linear-gradient(transparent,rgba(0,0,0,.88))}
+.activity-caption span{display:block;color:#ffd43b;font-size:12px;font-weight:900;letter-spacing:1px;margin-bottom:4px}
+.activity-caption h3{color:#fff;font-size:19px;line-height:1.3}
+
+/* PRESTASI */
+.achievement{background:#fff}
+.achievement-list{margin-top:25px;display:grid;gap:15px}
+.achievement-list>div{display:flex;gap:14px;align-items:flex-start;padding:16px;background:#f6fbff;border-radius:14px;border:1px solid #e1eef6}
+.achievement-list b{font-size:25px}
+.achievement-list strong{display:block;color:#075ca8}
+.achievement-list small{display:block;color:#687680;margin-top:2px}
+
+/* GALERI */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.gallery figure{margin:0;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 7px 20px rgba(0,0,0,.08);cursor:pointer}
+.gallery figure img{width:100%;height:210px;object-fit:cover;transition:.4s}
+.gallery figure:hover img{transform:scale(1.05)}
+.gallery figcaption{padding:12px 14px;font-weight:700;color:#31536e;font-size:13px}
+.gallery-all{border:1px solid #075ca8;background:#fff;color:#075ca8;border-radius:9px;padding:10px 16px;font-weight:800;cursor:pointer}
+.gallery-all:hover{background:#075ca8;color:#fff}
+
+/* JEPANG / PPDB */
+.japan{padding:60px 0;background:#073d73;color:#fff}
+.japan-inner,.ppdb-inner{display:flex;align-items:center;justify-content:space-between;gap:35px}
+.japan h2,.ppdb h2{font-size:38px;line-height:1.2;margin-bottom:12px}
+.japan p,.ppdb p{max-width:760px;color:#d9e8f5}
+.ppdb{padding:65px 0;background:#eaf6ff}
+.ppdb h2{color:#073d73}
+.ppdb p{color:#50626f}
+.ppdb-actions{display:flex;gap:10px;flex-wrap:wrap}
+.ppdb-actions .btn-outline{border-color:#075ca8;color:#075ca8}
+.ppdb-actions .btn-outline:hover{background:#075ca8;color:#fff}
+
+/* KONTAK */
+.contact{background:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.contact-grid h2{font-size:40px;color:#073d73;line-height:1.2;margin-bottom:15px}
+.contact-grid>div>p{color:#65747e;margin-bottom:25px}
+.contact-item{display:flex;gap:12px;align-items:flex-start;margin:15px 0;color:#536571}
+.contact-item strong{color:#075ca8}
+.contact-form{background:#f5faff;padding:30px;border-radius:20px;border:1px solid #deedf7}
+.contact-form h3{color:#073d73;font-size:25px;margin-bottom:18px}
+.contact-form input,.contact-form textarea{width:100%;padding:13px 15px;margin-bottom:12px;border:1px solid #cbdce8;border-radius:9px;background:#fff;outline:none}
+.contact-form input:focus,.contact-form textarea:focus{border-color:#0784c7;box-shadow:0 0 0 3px rgba(7,132,199,.1)}
+.btn-primary{background:#075ca8;color:#fff}
+.btn-primary:hover{background:#073d73}
+
+/* FOOTER */
+footer{background:#052f58;color:#d9e8f5;padding:55px 0 20px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:35px}
+.footer-grid h3{color:#fff;margin-bottom:8px}
+.footer-grid strong{display:block;color:#ffd43b;margin-bottom:10px}
+.footer-grid a{display:block;margin:5px 0;color:#d9e8f5;font-size:14px}
+.footer-grid a:hover{color:#ffd43b}
+.copyright{border-top:1px solid rgba(255,255,255,.15);margin-top:35px;padding-top:18px;text-align:center;font-size:12px}
+.copyright strong{color:#ffd43b}
+
+/* MODAL + LIGHTBOX */
+.modal,.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:3000;padding:20px}
+.modal.show,.lightbox.show{display:flex}
+.modal-box{background:#fff;border-radius:18px;padding:35px;max-width:550px;width:100%;position:relative}
+.close,.lightbox-close{position:absolute;right:15px;top:12px;border:0;background:none;font-size:30px;cursor:pointer}
+.modal-note{background:#f4faff;padding:14px;border-radius:10px;margin:18px 0}
+.lightbox img{max-width:min(1000px,90vw);max-height:80vh;width:auto;height:auto;border-radius:12px}
+.lightbox p{position:absolute;bottom:25px;color:#fff;font-weight:700}
+.lightbox-close{color:#fff;font-size:38px}
+
+/* ANIMASI - sengaja tidak menyembunyikan gambar */
+.reveal{opacity:1;visibility:visible;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+ .nav-links{display:none}
+ .menu-toggle{display:block}
+ .quick-grid{grid-template-columns:repeat(2,1fr)}
+ .cards{grid-template-columns:repeat(2,1fr)}
+ .gallery{grid-template-columns:repeat(3,1fr)}
+ .activity-grid{grid-template-columns:repeat(2,1fr)}
+ .activity.featured{grid-column:span 2}
+ .split,.contact-grid{grid-template-columns:1fr}
+ .section-image img,.achievement-image img{height:360px}
 }
-header .logo img{
-  width:82px;
-  height:82px;
-  object-fit:contain;
-  display:block;
+@media(max-width:650px){
+ .topbar-inner{display:none}
+ .nav{min-height:68px}
+ .brand img{width:48px;height:48px}
+ .brand strong{font-size:13px}
+ .hero,.hero-slides{min-height:600px}
+ .hero-content{padding:80px 0}
+ .hero h1{font-size:40px}
+ .hero p{font-size:15px}
+ .quick-grid,.cards,.benefit-grid,.activity-grid,.gallery,.footer-grid{grid-template-columns:1fr}
+ .activity.featured{grid-column:auto}
+ .activity img{height:280px}
+ .gallery figure img{height:250px}
+ .section{padding:60px 0}
+ .section-head,.japan-inner,.ppdb-inner{display:block}
+ .section-head>p{margin-top:15px}
+ .section-head .gallery-all{margin-top:15px}
+ .stats{grid-template-columns:1fr}
+ .section-image img,.achievement-image img{height:280px}
+ .japan .btn,.ppdb-actions{margin-top:20px}
+ .contact-grid h2{font-size:32px}
 }
